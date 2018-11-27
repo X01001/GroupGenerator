@@ -171,22 +171,16 @@ $(document).ready(function() {
     $('#fetch').click(() => {
         tinyurl($("#lectiolink").val(), () => {
             //Get title object and table of students
-            console.log(tinyurl.url);
             var className = $(tinyurl.url).find("#s_m_HeaderContent_MainTitle").text();
             var rootTable = $(tinyurl.url).find("#s_m_Content_Content_laerereleverpanel_alm_gv").find("tr");
             //Loop the table of students, extract their names, and add them to the textbox
-            console.log(rootTable);
-            console.log(rootTable.length);
             for (var i = 0; i < rootTable.length; i++) {
                 if(i == 0) {
                     continue;
                 }
                 var item = rootTable[i].childNodes;
-                console.log(item);
                 var name = $(item[2]).text().trim() + " " + $(item[3]).text().trim();
-                console.log(name);
                 var old = $('textarea').val();
-                console.log(old);
                 $('textarea').val(old + "\n" + name);
             }
             //Extract id of lectio class
